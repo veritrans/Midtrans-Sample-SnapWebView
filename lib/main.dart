@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (ctx) => const InputUrlScreen(),
-        SnapWebViewScreen.routeName: (ctx) => SnapWebViewScreen(controller: controller),
+        SnapWebViewScreen.routeName: (ctx) => const SnapWebViewScreen(),
       },
     );
   }

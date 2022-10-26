@@ -6,10 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class SnapWebViewScreen extends StatefulWidget {
   static const routeName = '/snap-webview';
 
-  const SnapWebViewScreen({Key? key, required this.controller})
-      : super(key: key);
-
-  final Completer<WebViewController> controller;
+  const SnapWebViewScreen({Key? key}) : super(key: key);
 
   @override
   State<SnapWebViewScreen> createState() => _WebViewAppState();
@@ -35,9 +32,6 @@ class _WebViewAppState extends State<SnapWebViewScreen> {
               setState(() {
                 loadingPercentage = 0;
               });
-            },
-            onWebViewCreated: (webViewController) {
-              widget.controller.complete(webViewController);
             },
             onProgress: (progress) {
               setState(() {
