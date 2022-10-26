@@ -23,15 +23,22 @@ class InputUrlState extends State<InputUrlScreen> {
               child: TextField(
                 controller: _url,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Put your SNAP link (optional)'),
+                    border: OutlineInputBorder(),
+                    labelText: 'Put your SNAP link (optional)'),
               ),
             ),
             ElevatedButton(
                 onPressed: () {
+                  String url;
+                  if (_url.text == "") {
+                    url = "https://sample-demo-dot-midtrans-support-tools.et.r.appspot.com/snap-redirect/";
+                  } else {
+                    url = _url.text;
+                  }
                   Navigator.of(context).pushNamed(
                     SnapWebViewScreen.routeName,
                     arguments: {
-                      'url' : _url.text,
+                      'url': url,
                     },
                   );
                 },
