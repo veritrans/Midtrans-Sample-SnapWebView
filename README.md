@@ -1,16 +1,32 @@
-# snap_webview
+# Midtrans Sample SNAP in Flutter WebView
 
-A new Flutter project.
+## Introduction
+If your mobile app is using Flutter WebView to display Snap, this is a sample project that you can use to try open Snap using Flutter WebView.
 
-## Getting Started
+## Prerequisite
+1. [Flutter](https://docs.flutter.dev/get-started/install)
 
-This project is a starting point for a Flutter application.
+## Technical point
+You need to make sure the app follows the points given below.
+- Enable JavaScript capability for the WebView.
+- Allow WebView to open bank web domain.
+```dart
+navigationDelegate: (navigation) {
+    final host = Uri.parse(navigation.url).toString();
+    if (host.contains('gojek://') ||
+        host.contains('shopeeid://') ||
+        host.contains('//wsa.wallet.airpay.co.id/') ||
+        // This is handle for sandbox Simulator
+        host.contains('/gopay/partner/') ||
+        host.contains('/shopeepay/')) {
+    _launchInExternalBrowser(Uri.parse(navigation.url));
+    return NavigationDecision.prevent;
+    } else {
+    return NavigationDecision.navigate;
+    }
+}
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Useful Resources
+- [Midtrans - Testing Payment on Sandbox](https://docs.midtrans.com/en/technical-reference/sandbox-test)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
