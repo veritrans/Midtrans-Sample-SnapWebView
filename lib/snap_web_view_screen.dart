@@ -54,7 +54,8 @@ class _WebViewAppState extends State<SnapWebViewScreen> {
                       host.contains('//wsa.wallet.airpay.co.id/') ||
                       // This is handle for sandbox Simulator
                       host.contains('/gopay/partner/') ||
-                      host.contains('/shopeepay/')) {
+                      host.contains('/shopeepay/') ||
+                      host.contains('/pdf')) {
                     _launchInExternalBrowser(Uri.parse(navigation.url));
                     return NavigationDecision.prevent;
                   } else {
