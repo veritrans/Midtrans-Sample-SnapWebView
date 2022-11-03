@@ -1,0 +1,123 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.snap_webview"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="20"
+8-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:4:5-66
+11-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:4:22-64
+12
+13    <application
+14        android:name="android.app.Application"
+14-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:8:9-42
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.6.0] /Users/ferdian.julianto/.gradle/caches/transforms-3/acbce933e4b464a5224ed377a62db1f5/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+16        android:icon="@mipmap/ic_launcher"
+16-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:10:9-43
+17        android:label="snap_webview"
+17-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:7:9-37
+18        android:networkSecurityConfig="@xml/network_security_config" >
+18-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:9:9-69
+19        <activity
+19-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:11:9-38:20
+20            android:name="com.example.snap_webview.MainActivity"
+20-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:12:13-41
+21            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+21-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:16:13-163
+22            android:exported="true"
+22-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:13:13-36
+23            android:hardwareAccelerated="true"
+23-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:17:13-47
+24            android:launchMode="singleTop"
+24-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:14:13-43
+25            android:theme="@style/LaunchTheme"
+25-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:15:13-47
+26            android:windowSoftInputMode="adjustResize" >
+26-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:18:13-55
+27
+28            <!--
+29                 Specifies an Android theme to apply to this Activity as soon as
+30                 the Android process has started. This theme is visible to the user
+31                 while the Flutter UI initializes. After that, this theme continues
+32                 to determine the Window background behind the Flutter UI.
+33            -->
+34            <meta-data
+34-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:23:13-26:17
+35                android:name="io.flutter.embedding.android.NormalTheme"
+35-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:24:15-70
+36                android:resource="@style/NormalTheme" />
+36-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:25:15-52
+37
+38            <intent-filter>
+38-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:27:13-30:29
+39                <action android:name="android.intent.action.MAIN" />
+39-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:28:17-68
+39-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:28:25-66
+40
+41                <category android:name="android.intent.category.LAUNCHER" />
+41-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:29:17-76
+41-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:29:27-74
+42            </intent-filter>
+43            <intent-filter>
+43-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:31:13-37:29
+44                <action android:name="android.intent.action.VIEW" />
+44-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:32:17-69
+44-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:32:25-66
+45
+46                <category android:name="android.intent.category.DEFAULT" />
+46-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:33:17-76
+46-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:33:27-73
+47                <category android:name="android.intent.category.BROWSABLE" />
+47-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:34:17-78
+47-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:34:27-75
+48
+49                <data
+49-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:35:17-36:42
+50                    android:host="demo"
+50-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:36:21-40
+51                    android:scheme="midtrans" />
+51-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:35:23-48
+52            </intent-filter>
+53        </activity>
+54        <!--
+55             Don't delete the meta-data below.
+56             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+57        -->
+58        <meta-data
+58-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:41:9-43:33
+59            android:name="flutterEmbedding"
+59-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:42:13-44
+60            android:value="2" />
+60-->/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/android/app/src/main/AndroidManifest.xml:43:13-30
+61
+62        <activity
+62-->[:url_launcher_android] /Users/ferdian.julianto/AndroidStudioProjects/snap_webview/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-13:74
+63            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+63-->[:url_launcher_android] /Users/ferdian.julianto/AndroidStudioProjects/snap_webview/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-74
+64            android:exported="false"
+64-->[:url_launcher_android] /Users/ferdian.julianto/AndroidStudioProjects/snap_webview/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-37
+65            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+65-->[:url_launcher_android] /Users/ferdian.julianto/AndroidStudioProjects/snap_webview/build/url_launcher_android/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-71
+66
+67        <uses-library
+67-->[androidx.window:window:1.0.0-beta04] /Users/ferdian.julianto/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+68            android:name="androidx.window.extensions"
+68-->[androidx.window:window:1.0.0-beta04] /Users/ferdian.julianto/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+69            android:required="false" />
+69-->[androidx.window:window:1.0.0-beta04] /Users/ferdian.julianto/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+70        <uses-library
+70-->[androidx.window:window:1.0.0-beta04] /Users/ferdian.julianto/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+71            android:name="androidx.window.sidecar"
+71-->[androidx.window:window:1.0.0-beta04] /Users/ferdian.julianto/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+72            android:required="false" />
+72-->[androidx.window:window:1.0.0-beta04] /Users/ferdian.julianto/.gradle/caches/transforms-3/49bc944d29f70d45aa5add8e43e3247e/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+73    </application>
+74
+75</manifest>
