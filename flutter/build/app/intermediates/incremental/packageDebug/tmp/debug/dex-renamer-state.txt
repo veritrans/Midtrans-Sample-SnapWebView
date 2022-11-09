@@ -1,4 +1,0 @@
-#Tue Nov 01 20:17:05 WIB 2022
-base.0=/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

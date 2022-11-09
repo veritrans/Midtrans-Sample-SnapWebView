@@ -1,4 +1,0 @@
-#Wed Oct 26 16:46:08 WIB 2022
-base.0=/Users/ferdian.julianto/AndroidStudioProjects/snap_webview/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
