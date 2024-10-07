@@ -1,7 +1,10 @@
-import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:file_saver/file_saver.dart';
 
 class SnapWebViewScreen extends StatefulWidget {
   static const routeName = '/snap-webview';
@@ -13,15 +16,13 @@ class SnapWebViewScreen extends StatefulWidget {
 }
 
 class _WebViewAppState extends State<SnapWebViewScreen> {
-  var loadingPercentage = 0;
+  int loadingPercentage = 0;
+  late WebViewController _controller;
 
   @override
   Widget build(BuildContext context) {
     final routeArgs =
-    ModalRoute
-        .of(context)!
-        .settings
-        .arguments as Map<String, String>;
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final url = routeArgs['url'];
     return Scaffold(
       body: SafeArea(
@@ -47,8 +48,15 @@ class _WebViewAppState extends State<SnapWebViewScreen> {
                     loadingPercentage = 100;
                   });
                 },
-                navigationDelegate: (navigation) {
-                  final host = Uri.parse(navigation.url).toString();
+                javascriptMode: JavascriptMode.unrestricted,
+                onWebViewCreated: (WebViewController webViewController) {
+                  _controller = webViewController;
+                },
+                javascriptChannels: <JavascriptChannel>{
+                  _blobDataChannel(context),
+                },
+                navigationDelegate: (NavigationRequest request) {
+                  final host = Uri.parse(request.url).toString();
                   if (host.contains('gojek://') ||
                       host.contains('shopeeid://') ||
                       host.contains('//wsa.wallet.airpay.co.id/') ||
@@ -56,13 +64,15 @@ class _WebViewAppState extends State<SnapWebViewScreen> {
                       host.contains('/gopay/partner/') ||
                       host.contains('/shopeepay/') ||
                       host.contains('/pdf')) {
-                    _launchInExternalBrowser(Uri.parse(navigation.url));
+                    _launchInExternalBrowser(Uri.parse(request.url));
                     return NavigationDecision.prevent;
-                  } else {
-                    return NavigationDecision.navigate;
                   }
+                  if (host.startsWith('blob:')) {
+                    _fetchBlobData(request.url);
+                    return NavigationDecision.prevent;
+                  }
+                  return NavigationDecision.navigate;
                 },
-                javascriptMode: JavascriptMode.unrestricted,
               ),
             ),
             Container(
@@ -73,7 +83,9 @@ class _WebViewAppState extends State<SnapWebViewScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF0A2852)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0A2852),
+                  ),
                   child: const Text('Exit', style: TextStyle(fontSize: 10))),
             ),
             if (loadingPercentage < 100)
@@ -93,5 +105,41 @@ class _WebViewAppState extends State<SnapWebViewScreen> {
     )) {
       throw 'Could not launch $url';
     }
+  }
+
+  JavascriptChannel _blobDataChannel(BuildContext context) {
+    return JavascriptChannel(
+      name: 'BlobDataChannel',
+      onMessageReceived: (JavascriptMessage message) async {
+        final decodedBytes = base64Decode(message.message);
+        final directory = await getApplicationDocumentsDirectory();
+        final path = directory.path;
+        final file = File('$path/export.csv');
+        await file.writeAsBytes(decodedBytes);
+
+        await FileSaver.instance.saveAs(
+          name: 'export',
+          ext: 'png',
+          mimeType: MimeType.png,
+          file: file,
+        );
+      },
+    );
+  }
+
+  void _fetchBlobData(String blobUrl) async {
+    final script = '''
+      (async function() {
+        const response = await fetch('$blobUrl');
+        const blob = await response.blob();
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          const base64data = reader.result.split(',')[1];
+          BlobDataChannel.postMessage(base64data);
+        };
+        reader.readAsDataURL(blob);
+      })();
+    ''';
+    _controller.runJavascript(script);
   }
 }
