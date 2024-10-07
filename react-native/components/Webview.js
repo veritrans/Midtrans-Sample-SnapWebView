@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { View, Alert, StyleSheet, ActivityIndicator } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import RNFS from 'react-native-fs';
+import RNFetchBlob from 'rn-fetch-blob';
 
 const DEFAULT_URI = 'https://sample-demo-dot-midtrans-support-tools.et.r.appspot.com/snap-redirect/';
 
 const WebviewComponent = ({ uri }) => {
-  const [isLoading, setLoading] = React.useState(true);
+  const [isLoading, setLoading] = useState(true);
+
+  const handleDownload = async (url) => {
+    const downloadDest = `${RNFS.DocumentDirectoryPath}/${new Date().getTime()}.png`;
+
+    RNFetchBlob.config({
+      fileCache: true,
+      path: downloadDest,
+    })
+      .fetch('GET', url)
+      .then((res) => {
+        Alert.alert('Download Complete', `File downloaded to: ${res.path()}`);
+      })
+      .catch((error) => {
+        Alert.alert('Download Error', error.message);
+      });
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -19,6 +37,13 @@ const WebviewComponent = ({ uri }) => {
         allowFileAccessFromFileURLs={true}
         allowFileAccess={true}
         cacheMode="LOAD_NO_CACHE"
+        onShouldStartLoadWithRequest={(request) => {
+          if (url.startsWith('blob:')) {
+            handleDownload(request.url);
+            return false;
+          }
+          return true;
+        }}
       />
       {isLoading && (
         <View style={styles.loader}>

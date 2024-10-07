@@ -15,7 +15,7 @@ function App() {
       <TextInput
         style={styles.input}
         onChangeText={setUri}
-        value={null}
+        value={uri}
         placeholder="Put your SNAP link (optional)"
         keyboardType="default"
       />
